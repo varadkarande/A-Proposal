@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>A Special Message for a Special Girl</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      margin-top: 50px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .message {
+      max-width: 600px;
+      margin: 30px auto;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      animation: fadeIn 4s ease-in-out;
+    }
+
+    .button-container {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn {
+      background-color: #e91e63;
+      color: white;
+      font-size: 1.5rem;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      margin: 10px;
+      transition: background-color 0.3s;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background-color: #c2185b;
+    }
+
+    .next-btn {
+      position: fixed;
+      right: 20px;
+      top: 20px;
+      background-color: #81c784; /* Light green */
+      font-size: 1.2rem;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .next-btn:hover {
+      background-color: #66bb6a; /* Darker green on hover */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: float 6s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .fireworks {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    .firework {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #ffeb3b;
+      border-radius: 50%;
+      opacity: 0;
+      animation: fireworkAnimation 2s forwards;
+    }
+
+    @keyframes fireworkAnimation {
+      0% {
+        transform: scale(1);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(5) translateY(-200px);
+        opacity: 0;
+      }
+    }
+
+    .footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>A Special Message for a Special Girl</h1>
+
+  <div class="message">
+    <p>Dear,</p>
+    <p>From the moment I met you, something clicked in my heart. Your smile, your vibe, your simplicity — it’s all just... magical.</p>
+    <p>I may not be a poet, but my heart writes your name on every beat. This little website is my way of saying something I've been holding in...</p>
+    <p><strong>I like you. A lot. And I’d be the happiest guy alive if you’d give me a chance to be more than just a friend. Will you be mine ?</strong></p>
+    <p>– Chaitanya ❤️</p>
+  </div>
+
+  <audio autoplay loop>
+    <source src="romantic_lofi.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="button-container">
+    <button class="btn" onclick="triggerFireworks()">Yes, I like you too!</button>
+    <button class="btn" onclick="declineProposal()">No, sorry!</button>
+  </div>
+
+  <div class="footer">Made with 💖 by Chaitanya</div>
+
+  <div class="hearts" id="hearts"></div>
+  <div class="fireworks" id="fireworks"></div>
+
+  <button class="next-btn" onclick="window.location.href='nextpage.html'">Next Page</button>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+      document.getElementById('hearts').appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }
+
+    setInterval(createHeart, 300);
+
+    function triggerFireworks() {
+      for (let i = 0; i < 10; i++) {
+        const firework = document.createElement('div');
+        firework.classList.add('firework');
+        firework.style.left = Math.random() * 100 + 'vw';
+        firework.style.animationDuration = '2s';
+        document.getElementById('fireworks').appendChild(firework);
+        
+        setTimeout(() => {
+          firework.remove();
+        }, 2000);
+      }
+    }
+
+    function declineProposal() {
+      alert("That's okay! Maybe another time!");
+    }
+  </script>
+
+</body>
+</html>
