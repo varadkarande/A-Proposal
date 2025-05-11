@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>No worries! - For Sanskruti</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #ff9a9e, #fad0c4); /* Updated to match previous romantic vibe */
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 50px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .message {
+      max-width: 600px;
+      margin: 30px auto;
+      font-size: 1.5rem;
+      line-height: 1.6;
+      animation: fadeIn 4s ease-in-out;
+    }
+
+    .button-container {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn {
+      background-color: #ff4081;
+      color: white;
+      font-size: 1.5rem;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      margin: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #e91e63;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .emoji {
+      font-size: 3rem;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>It's Okay, No Worries!</h1>
+
+  <div class="message">
+    <p>Don't worry, I totally understand. 😊</p>
+    <p>We can always stay friends and continue to have fun together!</p>
+  </div>
+
+  <div class="emoji">
+    😅🙌
+  </div>
+
+  <div class="button-container">
+    <button class="btn" onclick="goBack()">Go Back</button>
+  </div>
+
+  <script>
+    function goBack() {
+      window.history.back(); // Takes the user back to the previous page
+    }
+  </script>
+
+</body>
+</html>
