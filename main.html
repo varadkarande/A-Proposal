@@ -5,7 +5,6 @@
   <title>A Special Message for a Special Girl</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    
     @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap');
 
     body {
@@ -61,9 +60,9 @@
 
     .next-btn {
       position: fixed;
-      right: 20px;
-      top: 20px;
-      background-color: #81c784; /* Light green */
+      left: 20px;
+      bottom: 20px;
+      background-color: #81c784;
       font-size: 1.2rem;
       padding: 15px 25px;
       border: none;
@@ -75,7 +74,7 @@
     }
 
     .next-btn:hover {
-      background-color: #66bb6a; /* Darker green on hover */
+      background-color: #66bb6a;
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     }
 
@@ -169,6 +168,41 @@
       margin-top: 50px;
       font-size: 0.9rem;
     }
+
+    /* ⭐ Added Code Starts - Music Button Styling */
+    .music-btn {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      background: #ff4081;
+      color: white;
+      font-size: 1.3rem;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 1000;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 0 15px rgba(255, 64, 129, 0.7);
+      animation: heartbeat 1.5s infinite;
+      transition: all 0.3s ease;
+    }
+
+    .music-btn:hover {
+      background-color: #f50057;
+      box-shadow: 0 0 25px rgba(255, 64, 129, 1);
+      transform: scale(1.05);
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+    /* ⭐ Added Code Ends */
   </style>
 </head>
 <body>
@@ -183,10 +217,16 @@
     <p>– Chaitanya ❤️</p>
   </div>
 
-  <audio autoplay loop>
+  <!-- ⭐ Added Code Starts - Music Play Button & Audio -->
+  <button onclick="playMusic()" class="music-btn">
+    ❤️ Play Music
+  </button>
+
+  <audio id="bgMusic" loop>
     <source src="https://varadkarande.github.io/A-Proposal/Zaalima.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
+  <!-- ⭐ Added Code Ends -->
 
   <div class="footer">Made with 💖 by Chaitanya</div>
 
@@ -226,6 +266,14 @@
 
     function declineProposal() {
       alert("That's okay! Maybe another time!");
+    }
+
+    // ⭐ Added Code - Play Music Function
+    function playMusic() {
+      const music = document.getElementById('bgMusic');
+      music.play().catch(e => {
+        alert("Click allow or interact with the page to play music.");
+      });
     }
   </script>
 
