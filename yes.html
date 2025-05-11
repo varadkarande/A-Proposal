@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Yay! It's a Yes!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 50px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .message {
+      max-width: 600px;
+      margin: 30px auto;
+      font-size: 1.5rem;
+      line-height: 1.6;
+      animation: fadeIn 4s ease-in-out;
+    }
+
+    .celebration {
+      font-size: 2rem;
+      color: #ffeb3b;
+      animation: bounce 1s infinite alternate;
+    }
+
+    .button-container {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn {
+      background-color: #e91e63;
+      color: white;
+      font-size: 1.5rem;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      margin: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #c2185b;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+
+    .heart-animation {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 3rem;
+      color: #ff1744;
+      animation: heartbeat 1s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.2); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Yay! It's a Yes!</h1>
+
+  <div class="message">
+    <p>I'm so happy you said YES! ❤️ This is the beginning of something beautiful, and I can't wait to see where this journey takes us.</p>
+    <p>You are truly amazing, and I'm the luckiest guy in the world right now.</p>
+  </div>
+
+  <div class="celebration">
+    🎉🎉🎉
+  </div>
+
+  <div class="heart-animation">💖</div>
+
+  <div class="button-container">
+    <button class="btn" onclick="startThisJourney()">Let's Start This Journey!</button>
+    <button class="btn" onclick="goBack()">Go Back</button>
+  </div>
+
+  <!-- Fireworks Canvas -->
+  <canvas id="fireworksCanvas"></canvas>
+
+  <script>
+    // Fireworks function
+    var canvas = document.getElementById("fireworksCanvas");
+    var ctx = canvas.getContext("2d");
+    var fireworks = [];
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    function Firework(x, y, color) {
+      this.x = x;
+      this.y = y;
+      this.color = color;
+      this.radius = 2;
+      this.speed = Math.random() * 6 + 1;
+      this.angle = Math.random() * 2 * Math.PI;
+      this.life = 0;
+      this.maxLife = Math.random() * 20 + 40;
+    }
+
+    Firework.prototype.update = function() {
+      this.x += Math.cos(this.angle) * this.speed;
+      this.y += Math.sin(this.angle) * this.speed;
+      this.life++;
+      if (this.life > this.maxLife) {
+        this.radius = 0;
+      }
+    };
+
+    Firework.prototype.draw = function() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    };
+
+    function createFireworks(x, y) {
+      var colors = ['#FF0DFF', '#FF1493', '#00FFFF', '#FFFF00', '#FF6347'];
+      for (var i = 0; i < 100; i++) {
+        var firework = new Firework(x, y, colors[Math.floor(Math.random() * colors.length)]);
+        fireworks.push(firework);
+      }
+    }
+
+    function updateFireworks() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (var i = 0; i < fireworks.length; i++) {
+        fireworks[i].update();
+        fireworks[i].draw();
+      }
+      fireworks = fireworks.filter(function(firework) {
+        return firework.radius > 0;
+      });
+    }
+
+    function startFireworks() {
+      createFireworks(canvas.width / 2, canvas.height / 2);
+      setInterval(updateFireworks, 30);
+    }
+
+    function startThisJourney() {
+      alert("I can't wait for our future together!");
+      startFireworks(); // Start fireworks after clicking the button
+    }
+
+    function goBack() {
+      window.history.back(); // Takes the user back to the previous page
+    }
+  </script>
+
+</body>
+</html>
